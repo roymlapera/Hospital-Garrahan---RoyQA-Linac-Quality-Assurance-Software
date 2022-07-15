@@ -1,0 +1,50 @@
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
+import numpy as np
+import Tkinter as Tk
+
+class Window():
+    def __init__(self, master):
+        self.master = master
+        self.frame = Tk.Frame(master)
+        self.button1 = Tk.Button(self.master, text = 'Open Graph Window', width = 25,command= self.new_window)
+        self.button1.pack()
+        self.f = Figure( figsize=(7, 6), dpi=80 )
+        self.ax0 = self.f.add_axes( (0.05, .05, .50, .50), axisbg=(.75,.75,.10), frameon=True)
+        self.ax0.plot(np.max(np.random.rand(100,10)*10,axis=1),"r-")
+
+        self.frame = Tk.Frame(root)
+        self.frame.pack(side=Tk.LEFT, fill=Tk.BOTH, expand=1)
+
+        self.canvas = FigureCanvasTkAgg(self.f, master=self.frame)
+        self.canvas.get_tk_widget().pack(side=Tk.TOP, fill=Tk.BOTH, expand=1)
+        self.canvas.show()
+
+
+    def new_window(self):
+        self.newWindow = Tk.Toplevel(self.master)
+        self.app = Graph(self.newWindow)
+
+class Graph():
+    def __init__(self, master):
+        self.master = master
+        self.frame = Tk.Frame(master)
+        self.f1 = Figure( figsize=(10, 9), dpi=80 )
+        self.ax10 = self.f1.add_axes( (0.05, .05, .50, .50), axisbg=(.75,.75,.10), frameon=True)
+        self.ax10.plot(np.max(np.random.rand(100,10)*10,axis=1),"r-")
+        self.quitButton = Tk.Button(self.frame, text = 'Quit', width = 25, command = self.close_windows)
+        self.canvas = FigureCanvasTkAgg(self.f1, master=self.master)
+        self.canvas.show()
+        self.quitButton.pack()
+        self.frame.pack()
+
+    def close_windows(self):
+        self.master.destroy()
+
+if __name__ == '__main__':
+    root = Tk.Tk()
+    app = Window(root)
+    root.title( "MatplotLib with Tkinter" )
+    root.update()
+    root.deiconify()
+    root.mainloop()

@@ -1,0 +1,31 @@
+Irradiacion de films:
+
+1) Utilizar setup definido en excel "setup STARSHOTS.xlsx".
+
+Escaneo de placas de starshot usando peliculas Gafchromic
+
+1) Encender escaner. Dejar encendido 15 minutos de calentamiento de la lampara.
+2) Abrir programa EPSON Scan en Escritorio compu Mapcheck.
+3) Dejar parametros de escaneo (son los configurados para EBT2 y EBT3).
+4) Hacer 2 escaneos previos presionando boton "Previo".
+5) Colocar film con la cara irradiada hacia abajo y lo mas en el centro posible del escaner, 
+   con el borde mas corto del film a lo largo de la parte mas larga del escaner.
+6) Hacer escaneo previo con film y luego escanear presionando boton "Escanear".
+7) Guardar en formato TIFF.
+
+Preprocesamiento de las imagenes:
+
+1) Girar las imagenes escaneadas 90 grados usando el Editor de Imagenes de Windows.
+2) Guardar con nombre del starshot y "_girado" (Ej: Colimador_girado.tiff) en el mismo directorio que el programa "recortar_imagenes.py". 
+3) Ejecutar el programa de python con nombre "recortar_imagenes.py" usando la consola Anaconda Prompt. 
+   Se guardar con el nombre del starshot nada mas. Ej: colimador.tiff
+
+Analisis de imagenes procesadas:
+
+1) Abrir el script "analisis_starshot.py"
+2) Comentar y descomentar las regiones del codigo en funcion de cual starshot es el que se desea procesar (Ver foto "codigo.jpg").
+   Para comentar una linea de codigo de python, anteponer un numeral al principio de la linea. Se vera la linea con letra de color gris. 
+3) Revisar que la equivalencia pixel-distancia sea la correcta (el dpi o ppp).
+3) Ejecutar el codigo 
+   Apareceran los resultados en pantalla y se guarda un PDF de informe y una imagen de las lineas de starshot encontradas.
+4) Guardar resultados en carpeta Analisis de Starshot.
